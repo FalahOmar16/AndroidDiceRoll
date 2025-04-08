@@ -1,4 +1,5 @@
 package com.example.dicefalahomar080425
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -19,9 +20,20 @@ class MainActivity : AppCompatActivity() {
         var btnlancia= findViewById<Button>(R.id.bottonelancia)
         var img= findViewById<ImageView>(R.id.imgviewdice)
         var text= findViewById<TextView>(R.id.titletextview)
+
         btnlancia.setOnClickListener(View.OnClickListener {
             var miotoast= Toast.makeText(this, "dado tratto :0" , Toast.LENGTH_LONG )
             miotoast.show()
+            lanciaIntent(estrai())
         })
+    }
+    private fun estrai():Int{
+        return (1..6).random()
+    }
+
+    private fun lanciaIntent(valoreEstratto:Int) {
+        var mioIntent = Intent(this, SecondActivity::class.java)
+        mioIntent.putExtra("NUMERO", valoreEstratto)
+        startActivity(mioIntent)
     }
 }
